@@ -1,0 +1,53 @@
+VMs vs. Containers - Transcript Summary
+======================================
+
+Both virtual machines (VMs) and containers run applications in isolated
+environments, but they use different approaches.
+
+Virtual Machines
+----------------
+- A hypervisor creates and manages VMs, allocating CPU, memory, and storage.
+- Each VM includes a full guest operating system, its own kernel, and the
+  application's binaries and libraries.
+- VMs provide strong isolation and can run different operating systems on
+  the same physical machine.
+- Running a full OS requires more resources and usually takes longer to start.
+
+Containers
+----------
+- A container engine, such as Docker Engine, runs isolated applications.
+- Containers package an application with its dependencies and share the
+  underlying host OS kernel instead of running a separate guest kernel.
+- They provide process-level isolation and are generally lightweight,
+  quick to start, and efficient with resources.
+- Container images help applications run consistently across compatible
+  development, testing, and production environments.
+
+Key Differences
+---------------
+Startup:     VMs boot a full OS; containers typically start much faster.
+Resources:   VMs have greater OS overhead; containers share the host kernel.
+Isolation:   VMs have stronger isolation; containers share a kernel.
+Portability: VM images are larger; container images are easier to distribute.
+
+When to Use Each
+----------------
+- Use VMs when strong isolation or separate operating systems are required.
+- Use containers for lightweight, fast-starting, scalable application
+  environments, especially in cloud-native development.
+
+Interview Answer
+----------------
+VMs virtualize hardware and run a full guest OS for each instance. Containers
+isolate application processes while sharing the host OS kernel. This makes
+containers lighter and faster to start, while VMs provide stronger isolation
+and support separate operating systems.
+
+Technical Clarifications
+------------------------
+- The transcript describes a hosted hypervisor setup. Some hypervisors run
+  directly on hardware without a separate host operating system beneath them.
+- Containers require a compatible OS kernel; Linux containers on Windows or
+  macOS typically run through a Linux VM.
+- Startup times depend on the workload; "minutes vs. seconds" is a general
+  comparison, not a fixed rule.
