@@ -1,0 +1,14 @@
+docker info 
+
+docker ps // shows running containers
+docker ps -a // lists all containers
+
+docker run -d -p 5000:5000 hello-flask
+
+-- 14
+
+bridge - default - isolated from host network - communicates with its own IP addresses to other containers.
+host - part of host network - best if containers interact with the host machine.
+none - no network access
+
+-- 
