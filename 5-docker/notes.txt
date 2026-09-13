@@ -11,4 +11,34 @@ bridge - default - isolated from host network - communicates with its own IP add
 host - part of host network - best if containers interact with the host machine.
 none - no network access
 
--- 
+-- 15
+
+docker network create my-custom-network
+docker run -d --name mydb --network my-custom-network -e MY_SQL_ROOT_PASSWORD=pwd mysql:5.7
+* -d detached mode. runs in the bg.
+docker build -t hello-flask-mysql . //build docker image named hello-flask-mysql
+docker run -d --name myapp --network my-custom-network -p 5002:5002 hello-flask-mysql //attach container to my-custom-network so containers can communicate with each other.
+
+-- 21
+
+Docker Registeries - storage and distribution hub for docker images.
+    DockerHub - public
+    AWS ECR - public/private
+
+docker login
+docker build -t raiyanr11/hello-flask-app:v1 . //-t: tagging image. raiyanr11/hello-flask-app:v1: repo:tag. .: use dockerfile in current dir. 
+docker push raiyan11/hello-flask-app:v1
+docker pull raiyan11/hello-flask-app:v1
+
+-- 24
+
+docker start mydb //starting existing database container
+
+-- 25
+
+services.web.build --replace--> services.web.image to use AWS ECR image
+docker-compose up
+
+===
+
+git log --oneline
