@@ -42,7 +42,8 @@ docker-compose up
 -- challenge
 docker volume create redis-data
 docker run -d --name mydb_redis --network my-challenge-network -v redis-data redis
-
+    // volumes store data on the host machine
+docker compose up --build //rebuilds with added volume
 ===
 
 git log --oneline
