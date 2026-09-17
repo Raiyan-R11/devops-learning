@@ -39,6 +39,10 @@ docker start mydb //starting existing database container
 services.web.build --replace--> services.web.image to use AWS ECR image
 docker-compose up
 
+-- challenge
+docker volume create redis-data
+docker run -d --name mydb_redis --network my-challenge-network -v redis-data redis
+
 ===
 
 git log --oneline
