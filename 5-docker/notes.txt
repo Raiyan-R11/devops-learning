@@ -44,6 +44,22 @@ docker volume create redis-data
 docker run -d --name mydb_redis --network my-challenge-network -v redis-data redis
     // volumes store data on the host machine
 docker compose up --build //rebuilds with added volume
+
+Scaling
+    - docker compose up --scale web=3 //scaled web service to have 3 copies of web img but redis db  img remains 1. so all instances edit the same.
+    - --scale SERVICE=NUM starts several copies (replicas) of one service.
+    - Host port vs container port: every copy can listen on 5001 inside its own container, but a host port can only belong to one container. A port range on the host side gives each copy its own front door.
+    - The container port has to match the port the app actually listens on. That's why going back to :5001 fixed the hidden problem.
+    - Using Redis for shared state is what makes scaling safe. Every copy increments the same counter.
+
+    ┌─────────────────────────────────────────────┬─────────────────────────────────────────────────┐
+    │                   Command                   │                  What it does                   │
+    ├─────────────────────────────────────────────┼─────────────────────────────────────────────────┤
+    │ docker compose up --build                   │ Rebuilds the images, then starts the containers │
+    ├─────────────────────────────────────────────┼─────────────────────────────────────────────────┤
+    │ docker compose build then docker compose up │ The same thing in two steps                     │
+    └─────────────────────────────────────────────┴─────────────────────────────────────────────────┘
+
 ===
 
 git log --oneline
