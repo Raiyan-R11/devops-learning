@@ -11,6 +11,9 @@ services:
       # Replaces the default nginx.conf file in the container with this custom configuration
     depends_on:
       - web
+    environment:
+      - REDIS_HOST=redis_host
+      - REDIS_PORT=6379
 
   web:
     build: .
