@@ -39,6 +39,21 @@ docker start mydb //starting existing database container
 services.web.build --replace--> services.web.image to use AWS ECR image
 docker-compose up
 
+--27
+
+multi-stage docker builds
+    each docker 'FROM' statement starts a new stage of the build
+    COPY --from=0 // means copy the build artifact from the previous 'FROM' statement
+
+    stopping a build at a specific stage: good for debugging
+        docker build --target build -t hello . // hello tag , . is the current build context
+
+        BuildKit - helps only build stages that a required for the --target 
+                    , instead of all stages leading to the --target
+
+
+
+
 -- challenge
 docker volume create redis-data
 docker run -d --name mydb_redis --network my-challenge-network -v redis-data redis
