@@ -25,6 +25,10 @@ FROM python:3.8-slim
 WORKDIR /app
 
 COPY --from=build /app /app 
+COPY --from=build /usr/local/lib/python3.8/site-packages /usr/local/lib/python3.8/site-packages
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends libmariadb3 \
+    && rm -rf /var/lib/apt/lists/*
 
 EXPOSE 5002
 
