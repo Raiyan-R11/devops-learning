@@ -1,0 +1,21 @@
+AWS Regions
+    Choosing a Region is based on:
+    - Compliance
+    - Latency/ Proximity to customers
+    - Pricing
+    - Availablity of services
+
+AWS Availablity Zones:
+    Discrete data centers with redundant power, networking and connectivity
+
+Edge Locations (PoP):
+    Infrastructure used by services such as CloudFront and Route53
+
+Global services:
+    IAM , CloudFront (CDN) , Web App Firewall (WAF) , Route 53 (DNS)
+
+Region scoped services: 
+    https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/
+    - Not all services are available in all Regions
+    
+    
