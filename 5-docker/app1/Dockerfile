@@ -1,11 +1,8 @@
+FROM python:3.8-slim
 
-# STAGE 1: Build stage --------------------------------
-
-# Light weight image of python 3.8
-FROM python:3.8-slim AS build
-
-# Setup working directory for the following commands
 WORKDIR /app
+
+COPY . . 
 
 RUN apt-get update && apt-get install -y \
     gcc \
@@ -13,19 +10,7 @@ RUN apt-get update && apt-get install -y \
     libmariadb-dev \
     pkg-config
 
-COPY . .
-
 RUN pip install flask mysqlclient
-
-
-# STAGE 2: Prod stage --------------------------------
-
-FROM python:3.8-slim
-
-WORKDIR /app
-
-COPY --from=build /app /app 
-
 EXPOSE 5002
 
 # Start container app

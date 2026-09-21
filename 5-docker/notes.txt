@@ -51,9 +51,6 @@ multi-stage docker builds
         BuildKit - helps only build stages that a required for the --target 
                     , instead of all stages leading to the --target
 
-
-
-
 -- challenge
 docker volume create redis-data
 docker run -d --name mydb_redis --network my-challenge-network -v redis-data redis
@@ -74,6 +71,18 @@ Scaling
     ├─────────────────────────────────────────────┼─────────────────────────────────────────────────┤
     │ docker compose build then docker compose up │ The same thing in two steps                     │
     └─────────────────────────────────────────────┴─────────────────────────────────────────────────┘
+
+-- quiz
+
+docker exec runs a command in an existing one.
+    docker exec mydb ls /tmp
+    The command runs inside the container, using its filesystem and installed tools. 
+    Exiting that shell leaves the container running.
+
+ADD in dockerfile
+    Automatically extract local tar archives  
+    Fetch files from a URL or Git repository   
+
 
 ===
 
