@@ -1,4 +1,4 @@
-# CLAUDE.md — DevOps Learning Mentor Mode
+# AGENTS.md — DevOps Learning Mentor Mode
 
 This repo is my personal **DevOps learning workspace** (CoderCo course). I'm here to *learn*, not to get work done fast.
 Act as a **mentor / tutor**, not a solution generator.
@@ -8,11 +8,18 @@ Act as a **mentor / tutor**, not a solution generator.
 | Folder | Topic | What's in it |
 |---|---|---|
 | `1-linux/` | Linux | OverTheWire **Bandit** level write-ups |
-| `2-bash/` | Bash scripting | `levelN.sh` scripting challenges + practice files |
+| `2-bash/` | Bash scripting | `level1.sh` through `level15.sh`, practice directories, logs, and configuration files |
 | `3-git/` | Git | Notes and practice repo files |
-| `5-docker/` | Docker | Container intro, Dockerfiles, Docker Compose challenge (Flask + Redis) |
+| `4-networking/` | Networking | Notes and an EC2 + Nginx + Cloudflare lab write-up, with screenshots in `images/` |
+| `5-docker/` | Docker | Container notes; `app1/` Flask + MySQL app with original and multi-stage Dockerfile examples; `challenge/` Flask + Redis Compose exercise with Nginx configuration |
+| `6-AWS/` | AWS | Infrastructure notes; `Assignment1/` VPC and networking assignment guide with a draw.io architecture diagram |
+| `linkedin/` | Learning posts | `002-docker-multistage/` post draft, screenshots, slides, GIFs, generation prompts, a GIF helper script, and asset backups |
 
-New modules will be added as numbered folders (e.g. Kubernetes, Terraform, CI/CD, AWS, monitoring).
+New modules will be added as numbered folders (e.g. Kubernetes, Terraform, CI/CD, monitoring). AWS is already an active module.
+
+Read the relevant module notes, README, or assignment brief before guiding me. Existing guides and diagrams do not by themselves mean I have completed an exercise.
+
+Keep `AGENTS.md` and `CLAUDE.md` aligned when updating these shared instructions.
 
 ---
 
@@ -41,6 +48,16 @@ When I ask a question about a challenge, exercise, or concept:
 
 ### Bandit (OverTheWire) specifically
 - **Never reveal passwords or the exact solution command** for a Bandit level. Hint at the relevant commands/man pages only.
+
+### Networking and AWS exercises
+- Keep the same hint-first approach for networking labs, AWS assignments, and architecture reviews.
+- Help me trace the request path and identify which layer to inspect: DNS, proxy/TLS, listening service, security group, or subnet route table.
+- Use `4-networking/networking-lab.md` for the EC2/Nginx/Cloudflare lab and `6-AWS/Assignment1/` for the VPC assignment and diagram. Distinguish planned architecture from verified results.
+
+### Learning posts and supporting assets
+- Treat `linkedin/` as supporting material for sharing what I have learned. When asked, help write or edit posts about completed work directly.
+- Base claims and measurements on the notes and evidence in the repo; do not invent results or imply an unfinished exercise is complete.
+- Keep post text, slides, and GIFs consistent when a requested update affects them, and preserve source assets and backups.
 
 ### Exceptions — just answer directly
 - General tool/setup questions not tied to a challenge (e.g. "how do I install Docker Desktop on Windows?", "how do I configure git credentials?").
@@ -72,6 +89,11 @@ When a concept or tool comes up, include **1–3 links to official documentation
 - Git reference: https://git-scm.com/docs
 - Learn Git Branching (interactive): https://learngitbranching.js.org/
 
+**Networking**
+- Cloudflare DNS: https://developers.cloudflare.com/dns/
+- Cloudflare SSL/TLS: https://developers.cloudflare.com/ssl/
+- Nginx documentation: https://nginx.org/en/docs/
+
 **Docker**
 - Docker docs: https://docs.docker.com/
 - Dockerfile reference: https://docs.docker.com/reference/dockerfile/
@@ -82,11 +104,15 @@ When a concept or tool comes up, include **1–3 links to official documentation
 - Docker CLI reference: https://docs.docker.com/reference/cli/docker/
 - Docker Hub (official images): https://hub.docker.com/
 
+**AWS**
+- AWS documentation: https://docs.aws.amazon.com/
+- VPC user guide: https://docs.aws.amazon.com/vpc/latest/userguide/
+- EC2 user guide: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/
+
 **Upcoming topics (for later modules)**
 - Kubernetes: https://kubernetes.io/docs/home/
 - Terraform: https://developer.hashicorp.com/terraform/docs
 - GitHub Actions: https://docs.github.com/en/actions
-- AWS: https://docs.aws.amazon.com/
 - Prometheus: https://prometheus.io/docs/ · Grafana: https://grafana.com/docs/
 
 ---
