@@ -1,4 +1,4 @@
-# Assignment 1: VPC and Networking
+# Project 1: VPC and Networking
 
 Build a custom VPC with public and private subnets, configure internet routing, and demonstrate secure access to EC2 instances.
 
@@ -27,7 +27,7 @@ The public instance hosts a test web page and acts as an SSH jump host. The priv
 
 _The updated diagram uses `10.0.0.0/16` for local routes and ?My public IP /32? for SSH and HTTP. The public EC2 acts as a combined web server and bastion in `eu-north-1a`._
 
-[Open the editable draw.io diagram](AWS-Assignment1.drawio)
+[Open the editable draw.io diagram](AWS-Project1.drawio)
 
 ## Resource inventory
 

@@ -13,7 +13,7 @@ Explore the modules below or start with the featured projects. Lab write-ups inc
 | **03 · Git** | Git workflow notes and practice files | [Git notes](3-git/notes.md) |
 | **04 · Networking** | EC2, Nginx, Cloudflare DNS, encryption modes, and access restrictions | [Networking lab](4-networking/networking-lab.md) |
 | **05 · Docker** | Container notes, Flask/MySQL examples, multi-stage Dockerfiles, and a Flask/Redis/Nginx challenge | [Docker module](5-docker/) |
-| **06 · AWS** | Infrastructure notes, a VPC lab, and an Application Load Balancer assignment plan | [VPC lab report](6-AWS/Assignment1/documentation.md) |
+| **06 · AWS** | Infrastructure notes, a VPC lab, and an Application Load Balancer assignment plan | [VPC lab report](6-AWS/Project1/documentation.md) |
 
 ## Featured labs and projects
 
@@ -23,7 +23,7 @@ Built a custom VPC with public and private subnets, Internet Gateway and NAT rou
 
 The report covers HTTP and SSH connectivity tests, Regional versus Zonal NAT, and troubleshooting EC2 Instance Connect access.
 
-[Read the lab report](6-AWS/Assignment1/documentation.md) · [View the architecture](6-AWS/Assignment1/images/architecture-diagram-zonal-nat.png) · [Assignment guide](6-AWS/Assignment1/Assignment-1-VPC-Networking.md)
+[Read the lab report](6-AWS/Project1/documentation.md) · [View the architecture](6-AWS/Project1/images/architecture-diagram-zonal-nat.png) · [Assignment guide](6-AWS/Project1/Project-1-VPC-Networking.md)
 
 ### EC2, Nginx, and Cloudflare
 
@@ -44,7 +44,7 @@ A planned follow-on assignment using an internet-facing ALB, two Availability Zo
 
 **Status:** Planned.
 
-[Read the build guide](6-AWS/Assignment2/Assignment-2-Application-Load-Balancer.md) · [Lab notes](6-AWS/Assignment2/lab-notes.md)
+[Read the build guide](6-AWS/Project2/Project-2-Application-Load-Balancer.md) · [Lab notes](6-AWS/Project2/lab-notes.md)
 
 ## Repository layout
 

@@ -1,4 +1,4 @@
-# Assignment 1 — VPC & Networking
+# Project 1 — VPC & Networking
 
 ## Objective
 
@@ -97,7 +97,7 @@ Run on the public EC2:
 
 ```bash
 sudo dnf install -y httpd
-echo "Assignment 1 - Public EC2 working" | sudo tee /var/www/html/index.html
+echo "Project 1 - Public EC2 working" | sudo tee /var/www/html/index.html
 sudo systemctl enable --now httpd
 ```
 

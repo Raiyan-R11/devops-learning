@@ -1,4 +1,4 @@
-# Assignment 2 — Lab notes
+# Project 2 — Lab notes
 
 Status: Not yet recorded. Fill this in while building; the guide is a plan, not completion evidence.
 
@@ -11,7 +11,7 @@ Status: Not yet recorded. Fill this in while building; the guide is a plan, not 
 | VPC name / CIDR | |
 | Public subnets / CIDRs / AZs | |
 | Private subnets / CIDRs / AZs | |
-| Reused Assignment 1 resources | |
+| Reused Project 1 resources | |
 | ALB name / DNS name | |
 | ALB SG / EC2 SG | |
 | Target group | |

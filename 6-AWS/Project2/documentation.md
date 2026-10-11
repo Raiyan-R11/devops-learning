@@ -1,4 +1,4 @@
-# Assignment 2: Application Load Balancer
+# Project 2: Application Load Balancer
 
 Deploy EC2 web servers behind an internet-facing Application Load Balancer (ALB) across two Availability Zones, restrict the servers to ALB-only HTTP access, and add the three bonus items: a Route 53 alias, an HTTPS listener with ACM, and an Auto Scaling Group (ASG).
 
@@ -32,7 +32,7 @@ _The solid arrows show the request path. The ALB is drawn above the subnets to k
 
 DNS path: Cloudflare hosts `raiyanrizwan.com` and delegates the `aws` subdomain to a Route 53 hosted zone, where an alias record points `aws.raiyanrizwan.com` at the ALB.
 
-[Open the editable draw.io diagram](AWS-Assignment2.drawio)
+[Open the editable draw.io diagram](AWS-Project2.drawio)
 
 ## Resource inventory
 

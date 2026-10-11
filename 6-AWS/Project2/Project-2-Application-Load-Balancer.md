@@ -1,4 +1,4 @@
-# Assignment 2 — Application Load Balancer
+# Project 2 — Application Load Balancer
 
 ## Objective
 
@@ -24,14 +24,14 @@ This is a focused build guide, not a verbatim copy of the course brief. Private 
 | Public subnet A | `public-subnet-a` | `10.0.1.0/24`, AZ A |
 | Public subnet B | `public-subnet-b` | `10.0.3.0/24`, AZ B |
 | Internet Gateway | `assignment-igw` | Attached to the VPC |
-| ALB | `assignment2-alb` | Internet-facing, IPv4, public subnets A and B |
-| Target group | `assignment2-web-tg` | Instance targets, HTTP 80, same VPC |
-| EC2 A | `assignment2-web-a` | Public subnet A, public IPv4 enabled for package downloads |
-| EC2 B | `assignment2-web-b` | Public subnet B, public IPv4 enabled for package downloads |
-| ALB security group | `assignment2-alb-sg` | Public HTTP entry point |
-| EC2 security group | `assignment2-web-sg` | HTTP from ALB SG only |
+| ALB | `project2-alb` | Internet-facing, IPv4, public subnets A and B |
+| Target group | `project2-web-tg` | Instance targets, HTTP 80, same VPC |
+| EC2 A | `project2-web-a` | Public subnet A, public IPv4 enabled for package downloads |
+| EC2 B | `project2-web-b` | Public subnet B, public IPv4 enabled for package downloads |
+| ALB security group | `project2-alb-sg` | Public HTTP entry point |
+| EC2 security group | `project2-web-sg` | HTTP from ALB SG only |
 
-Use two different Availability Zones in the same Region. You may reuse Assignment 1's VPC and public subnet after checking their configuration and that the suggested CIDRs are available.
+Use two different Availability Zones in the same Region. You may reuse Project 1's VPC and public subnet after checking their configuration and that the suggested CIDRs are available.
 
 ```mermaid
 flowchart LR
@@ -66,10 +66,10 @@ Create these two groups in the same VPC before launching the instances.
 
 | Security group | Direction | Protocol / port | Source or destination |
 |---|---|---|---|
-| `assignment2-alb-sg` | Inbound | TCP 80 | `0.0.0.0/0` |
-| `assignment2-alb-sg` | Outbound | TCP 80 | `assignment2-web-sg` |
-| `assignment2-web-sg` | Inbound | TCP 80 | `assignment2-alb-sg` |
-| `assignment2-web-sg` | Outbound | All traffic | `0.0.0.0/0` for lab package downloads |
+| `project2-alb-sg` | Inbound | TCP 80 | `0.0.0.0/0` |
+| `project2-alb-sg` | Outbound | TCP 80 | `project2-web-sg` |
+| `project2-web-sg` | Inbound | TCP 80 | `project2-alb-sg` |
+| `project2-web-sg` | Outbound | All traffic | `0.0.0.0/0` for lab package downloads |
 
 Create both groups first, then add the references. Replace the ALB group's default allow-all outbound rule with the listed HTTP rule. Keep the instance group's default outbound rule for this lab.
 
@@ -83,12 +83,12 @@ See [AWS ALB security group guidance](https://docs.aws.amazon.com/elasticloadbal
 
 Launch instances separately so you can choose their subnets and page labels individually.
 
-1. In **EC2 → Instances → Launch instances**, name the first instance `assignment2-web-a`.
+1. In **EC2 → Instances → Launch instances**, name the first instance `project2-web-a`.
 2. Select **Amazon Linux 2023** and an instance size suitable for a small lab. Check pricing and your account's eligibility rather than assuming it is free.
 3. Choose your VPC and public subnet A. Set **Auto-assign public IP: Enable**.
-4. Select existing security group `assignment2-web-sg`.
+4. Select existing security group `project2-web-sg`.
 5. Under **Advanced details → User data**, add the script below.
-6. Launch and repeat for `assignment2-web-b` in public subnet B, changing `SERVER_LABEL` to `Web server B`.
+6. Launch and repeat for `project2-web-b` in public subnet B, changing `SERVER_LABEL` to `Web server B`.
 
 The script runs on the Linux instance, not in Windows PowerShell. It installs Apache, writes an identifiable page, and starts the service. User-data runs as root and normally runs only on first boot. See [EC2 user-data documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html).
 
@@ -100,9 +100,9 @@ dnf install -y httpd
 cat > /var/www/html/index.html <<EOF
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><title>Assignment 2</title></head>
+<head><meta charset="utf-8"><title>Project 2</title></head>
 <body>
-  <h1>Assignment 2 - ${SERVER_LABEL}</h1>
+  <h1>Project 2 - ${SERVER_LABEL}</h1>
   <p>Hostname: $(hostname)</p>
   <p>This response came through the Application Load Balancer.</p>
 </body>
@@ -133,7 +133,7 @@ In **EC2 → Target Groups → Create target group**, use:
 | Setting | Value |
 |---|---|
 | Target type | Instances |
-| Name | `assignment2-web-tg` |
+| Name | `project2-web-tg` |
 | Protocol / port | HTTP / 80 |
 | IP address type | IPv4 |
 | VPC | Your assignment VPC |
@@ -151,11 +151,11 @@ The group must be connected to an ALB listener and both target AZs enabled befor
 ## 5. Create the Application Load Balancer
 
 1. Open **EC2 → Load Balancers → Create load balancer → Application Load Balancer**.
-2. Name it `assignment2-alb`.
+2. Name it `project2-alb`.
 3. Choose **Internet-facing** and **IPv4**.
 4. Select your VPC. Under network mappings, choose **public subnet A and public subnet B**, in their two different AZs.
-5. Select `assignment2-alb-sg`, removing any unintended default group.
-6. Configure a listener on **HTTP:80**, with default action **Forward to `assignment2-web-tg`**.
+5. Select `project2-alb-sg`, removing any unintended default group.
+6. Configure a listener on **HTTP:80**, with default action **Forward to `project2-web-tg`**.
 7. Create the ALB and wait until its state is **Active**.
 8. Open the target group's **Targets** tab and wait for both instances to show **Healthy**.
 
@@ -266,6 +266,6 @@ After saving evidence, delete only resources created for this lab that you no lo
 2. Delete the lab ALB and then its unused target group.
 3. Terminate the manually managed lab instances; check for retained EBS volumes.
 4. Remove unused lab SGs and, if dedicated to this lab, subnet routes, subnets, the Internet Gateway, and VPC once dependencies are gone.
-5. Remove lab-only DNS records and any certificate no longer in use. Keep shared hosted zones and resources used by Assignment 1.
+5. Remove lab-only DNS records and any certificate no longer in use. Keep shared hosted zones and resources used by Project 1.
 
 Stopping EC2 alone does not remove ALB, public IPv4, or storage charges. Record your cleanup date in the notes.

@@ -12,7 +12,7 @@ Act as a **mentor / tutor**, not a solution generator.
 | `3-git/` | Git | Notes and practice repo files |
 | `4-networking/` | Networking | Notes and an EC2 + Nginx + Cloudflare lab write-up, with screenshots in `images/` |
 | `5-docker/` | Docker | Container notes; `app1/` Flask + MySQL app with original and multi-stage Dockerfile examples; `challenge/` Flask + Redis Compose exercise with Nginx configuration |
-| `6-AWS/` | AWS | Infrastructure notes; `Assignment1/` VPC and networking assignment guide with a draw.io architecture diagram |
+| `6-AWS/` | AWS | Infrastructure notes; `Project1/` VPC and networking assignment guide with a draw.io architecture diagram |
 | `linkedin/` | Learning posts | `002-docker-multistage/` post draft, screenshots, slides, GIFs, generation prompts, a GIF helper script, and asset backups |
 
 New modules will be added as numbered folders (e.g. Kubernetes, Terraform, CI/CD, monitoring). AWS is already an active module.
@@ -52,7 +52,7 @@ When I ask a question about a challenge, exercise, or concept:
 ### Networking and AWS exercises
 - Keep the same hint-first approach for networking labs, AWS assignments, and architecture reviews.
 - Help me trace the request path and identify which layer to inspect: DNS, proxy/TLS, listening service, security group, or subnet route table.
-- Use `4-networking/networking-lab.md` for the EC2/Nginx/Cloudflare lab and `6-AWS/Assignment1/` for the VPC assignment and diagram. Distinguish planned architecture from verified results.
+- Use `4-networking/networking-lab.md` for the EC2/Nginx/Cloudflare lab and `6-AWS/Project1/` for the VPC assignment and diagram. Distinguish planned architecture from verified results.
 
 ### Learning posts and supporting assets
 - Treat `linkedin/` as supporting material for sharing what I have learned. When asked, help write or edit posts about completed work directly.
