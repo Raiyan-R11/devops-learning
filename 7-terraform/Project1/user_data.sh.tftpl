@@ -1,0 +1,25 @@
+#!/bin/bash
+set -euxo pipefail   # stop on the first error and log every command
+
+dnf install -y httpd php-fpm php php-mysqlnd mariadb105-server wget
+
+systemctl enable --now httpd php-fpm mariadb
+
+set +x # hide sensitive information in the logs
+mysql -e "CREATE DATABASE ${db_name};
+CREATE USER '${db_user}'@'localhost' IDENTIFIED BY '${db_password}';
+GRANT ALL PRIVILEGES ON ${db_name}.* TO '${db_user}'@'localhost';
+FLUSH PRIVILEGES;"
+set -x # show commands in the logs again
+
+cd /tmp
+wget -q https://wordpress.org/latest.tar.gz
+tar -xzf latest.tar.gz
+cp -r wordpress/* /var/www/html/
+cp /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
+sed -i "s/database_name_here/${db_name}/; s/username_here/${db_user}/" /var/www/html/wp-config.php
+set +x
+sed -i "s/password_here/${db_password}/" /var/www/html/wp-config.php
+set -x
+chown -R apache:apache /var/www/html/
+systemctl restart httpd

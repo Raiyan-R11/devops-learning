@@ -1,0 +1,8 @@
+# db credientials----------------------------
+db_password = "wordpresspassword"
+db_name = "wordpressdb"
+db_user = "wordpressuser"
+
+# security-----------------------------------
+my_ip = "1.2.3.4/32"
+all_ip = "0.0.0.0/0"
