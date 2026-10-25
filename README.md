@@ -1,86 +1,98 @@
 # DevOps Learning Journey
 
-Hands-on projects, exercises, and technical notes from my **CoderCo DevOps learning journey**, covering Linux, Bash, Git, networking, Docker, AWS, and Terraform.
+### Linux & Scripting
 
-Explore the modules below or start with the featured projects. Lab write-ups include architecture diagrams, configuration details, screenshots, and lessons learned from troubleshooting.
+![Linux](https://img.shields.io/badge/OS-Linux-FCC624?logo=linux&logoColor=black)
+![Amazon Linux](https://img.shields.io/badge/Distro-Amazon_Linux-FF9900?logo=amazonaws&logoColor=white)
+![Bash](https://img.shields.io/badge/Shell-Bash-4EAA25?logo=gnubash&logoColor=white)
+![PowerShell](https://img.shields.io/badge/CLI-PowerShell-5391FE?logo=powershell&logoColor=white)
 
-## Learning modules
+### Cloud & Networking
 
-| Module | What is inside | Start here |
-|---|---|---|
-| **01 · Linux** | Selected OverTheWire Bandit level write-ups | [Linux exercises](1-linux/) |
-| **02 · Bash** | Fifteen numbered shell scripts, practice files, logs, and configuration examples | [Bash exercises](2-bash/) |
-| **03 · Git** | Git workflow notes and practice files | [Git notes](3-git/notes.md) |
-| **04 · Networking** | EC2, Nginx, Cloudflare DNS, encryption modes, and access restrictions | [Networking lab](4-networking/networking-lab.md) |
-| **05 · Docker** | Container notes, Flask/MySQL examples, multi-stage Dockerfiles, and a Flask/Redis/Nginx challenge | [Docker module](5-docker/) |
-| **06 · AWS** | Infrastructure notes, a VPC lab, and an Application Load Balancer assignment plan | [VPC lab report](6-AWS/Project1/documentation.md) |
-| **07 · Terraform** | Root module with a reusable EC2 child module, S3 remote state, and tfvars handling | [Terraform project](7-terraform/test/) |
+![AWS](https://img.shields.io/badge/Cloud-AWS-FF9900?logo=amazonaws&logoColor=white)
+![EC2](https://img.shields.io/badge/Amazon-EC2-FF9900?logo=amazonaws&logoColor=white)
+![VPC](https://img.shields.io/badge/Amazon-VPC-8C4FFF?logo=amazonaws&logoColor=white)
+![ALB](https://img.shields.io/badge/Application-Load_Balancer-8C4FFF?logo=amazonaws&logoColor=white)
+![Auto Scaling](https://img.shields.io/badge/EC2-Auto_Scaling-FF9900?logo=amazonaws&logoColor=white)
+![Route 53](https://img.shields.io/badge/Amazon-Route_53-8C4FFF?logo=amazonaws&logoColor=white)
+![ACM](https://img.shields.io/badge/AWS-Certificate_Manager-DD344C?logo=amazonaws&logoColor=white)
+![S3](https://img.shields.io/badge/Amazon-S3-569A31?logo=amazons3&logoColor=white)
+![Cloudflare](https://img.shields.io/badge/DNS-Cloudflare-F38020?logo=cloudflare&logoColor=white)
+![Nginx](https://img.shields.io/badge/Web_Server-Nginx-009639?logo=nginx&logoColor=white)
 
-## Featured labs and projects
+### Infrastructure as Code & Containers
 
-### AWS VPC and networking
+![Terraform](https://img.shields.io/badge/IaC-Terraform-844FBA?logo=terraform&logoColor=white)
+![Docker](https://img.shields.io/badge/Container-Docker-2496ED?logo=docker&logoColor=white)
+![Docker Compose](https://img.shields.io/badge/Orchestration-Docker_Compose-2496ED?logo=docker&logoColor=white)
 
-Built a custom VPC with public and private subnets, Internet Gateway and NAT routing, and EC2 security groups. The public EC2 acts as a combined web server and bastion for private-instance SSH access.
+### Development
 
-The report covers HTTP and SSH connectivity tests, Regional versus Zonal NAT, and troubleshooting EC2 Instance Connect access.
+![Git](https://img.shields.io/badge/Version_Control-Git-F05032?logo=git&logoColor=white)
+![VS Code](https://img.shields.io/badge/Editor-VS_Code-007ACC?logo=visualstudiocode&logoColor=white)
+![draw.io](https://img.shields.io/badge/Diagrams-draw.io-F08705?logo=diagramsdotnet&logoColor=white)
+![Markdown](https://img.shields.io/badge/Docs-Markdown-000000?logo=markdown&logoColor=white)
 
-[Read the lab report](6-AWS/Project1/documentation.md) · [View the architecture](6-AWS/Project1/images/architecture-diagram-zonal-nat.png) · [Assignment guide](6-AWS/Project1/Project-1-VPC-Networking.md)
+My working devops notebook - from a Linux terminal to infrastructure that Terraform builds and tears down on its own. Everything here was built by hand, broken at least once, and written up afterwards: the architecture, the screenshots, and the part most write-ups skip, **what went wrong and how I fixed it**.
 
-### EC2, Nginx, and Cloudflare
+**Short on time?** Go straight to the [highlights](#highlights).
 
-Deployed Nginx on EC2 and configured a Cloudflare-proxied subdomain. Explored security groups, visitor IP restrictions, and the difference between browser-to-Cloudflare and Cloudflare-to-origin connections.
+## Modules
 
-The write-up includes test results, screenshots, and potential improvements to origin access and TLS configuration.
+| #   | Module         | What's inside                                                                                       | Explore                                |
+| --- | -------------- | --------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| 01  | **Linux**      | 20+ OverTheWire Bandit levels cleared, with write-ups for the tricky ones - SSH keys, setuid, ports | [View](1-linux/)                       |
+| 02  | **Bash**       | 15 levels of shell scripting, ending in an `Arena_Boss`                                             | [View](2-bash/)                        |
+| 03  | **Git**        | Workflow notes and practice                                                                         | [View](3-git/notes.md)                 |
+| 04  | **Networking** | Nginx on EC2 behind a Cloudflare-proxied subdomain                                                  | [View](4-networking/networking-lab.md) |
+| 05  | **Docker**     | Multi-stage builds and a scaled Flask + Redis + Nginx stack                                         | [View](5-docker/)                      |
+| 06  | **AWS**        | A custom VPC, then an HTTPS ALB with Auto Scaling                                                   | [View](6-AWS/)                         |
+| 07  | **Terraform**  | A reusable EC2 module, S3 remote state, and WordPress as code                                       | [View](7-terraform/)                   |
 
-[Read the networking lab](4-networking/networking-lab.md)
+## Highlights
 
-### Docker application exercises
+- **HTTPS load balancer with Auto Scaling** _(06 - AWS)_ - an ALB across two AZs with an ACM certificate, a Route 53 alias, and an ASG. The instances only accept traffic from the ALB. [Write-up](6-AWS/Project2/documentation.md)
+- **Custom VPC from scratch** _(06 - AWS)_ - public and private subnets, IGW and NAT routing, and a bastion for private SSH. Includes a Zonal vs Regional NAT comparison. [Write-up](6-AWS/Project1/documentation.md)
+- **WordPress with Terraform** _(07)_ - EC2, security groups, and a user data script that installs Apache, PHP, MariaDB, and WordPress on first boot. Nothing configured by hand on the server. [Write-up](7-terraform/Project1/docs/documentation.md)
+- **Flask + Redis + Nginx** _(05 - Docker)_ - a visit counter behind an Nginx reverse proxy, scaled with Compose. [Challenge](5-docker/challenge/README.md)
 
-- **Flask and MySQL:** An application and Compose configuration, with original and multi-stage Dockerfile variants for comparison. [Browse the example](5-docker/app1/).
-- **Flask, Redis, and Nginx:** A visit-counter application with Compose services, reverse-proxy configuration, and a Redis volume. [Read the challenge](5-docker/challenge/README.md) · [Inspect the Compose configuration](5-docker/challenge/docker-compose.yaml).
+## Things that broke (and what they taught me)
 
-### Terraform EC2 module
+The bugs taught me more than the times it worked first try:
 
-A root configuration that calls a reusable `ec2` child module to create an EC2 instance. The state is stored in an S3 backend with a bucket in my own account, and the `.tf` files are kept separate from the `.tfvars` values.
+- **ALB targets stuck unhealthy (502s)** - the ASG instances had no public IP, so `dnf` timed out in user data and the web server never installed. On top of that, the launch template had no security group, so they got the default one. Fixed both, and now I check the system log first.
+- **A Terraform plan that wanted to replace my instance** - changing `user_data` forces a new instance. Better to find that out from `plan` than from `apply`.
+- **Subdomain down behind Cloudflare** - Full mode tried HTTPS to an Nginx origin that only served HTTP. Browser → Cloudflare and Cloudflare → origin are two separate connections, each with its own TLS settings.
 
-The work covers module inputs and outputs, variable declaration and passing, and keeping state, provider caches, and real variable values out of git.
-
-**Status:** Working. `terraform validate` and `terraform plan` pass, and a test instance was created with `terraform apply`. Remaining work: connect the root `terraform.tfvars` to the module's `instance_type` input.
-
-[Browse the project](7-terraform/test/) · [Git ignore rules](7-terraform/.gitignore) · [Example variables](7-terraform/test/terraform.tfvars.example)
-
-### AWS Application Load Balancer
-
-A planned follow-on assignment using an internet-facing ALB, two Availability Zones, private EC2 web servers, target groups, and health checks.
-
-**Status:** Planned.
-
-[Read the build guide](6-AWS/Project2/Project-2-Application-Load-Balancer.md) · [Lab notes](6-AWS/Project2/lab-notes.md)
-
-## Repository layout
+## Repository Structure
 
 ```text
 devops-learning/
-├── 1-linux/        Selected Bandit write-ups
-├── 2-bash/         Shell exercises and practice files
-├── 3-git/          Git notes and practice
-├── 4-networking/   Networking notes, lab report, and screenshots
-├── 5-docker/       Notes, application examples, and Compose challenge
-├── 6-AWS/          AWS notes and assignment documentation
-└── 7-terraform/    Terraform configuration and reusable modules
+├── 1-linux/        # Bandit write-ups
+├── 2-bash/         # Shell scripting levels
+├── 3-git/          # Version control
+├── 4-networking/   # Nginx, DNS, Cloudflare
+├── 5-docker/       # Containers and Compose
+├── 6-AWS/          # VPC and ALB projects
+└── 7-terraform/    # Infrastructure as Code
 ```
 
-## Working environment
+Each project has its own `documentation.md` with the architecture diagram, resource inventory, test evidence, and troubleshooting notes.
 
-- **Local machine:** Windows 11, PowerShell, and Git Bash.
-- **Containers:** Docker Desktop and Docker Compose.
-- **Cloud labs:** AWS, including Amazon Linux EC2 instances.
-- **Infrastructure as code:** Terraform with an S3 remote backend.
-- **Documentation:** Markdown, screenshots, and draw.io architecture diagrams.
+## Progress
 
-## References
+| Module          | Status                                |
+| --------------- | ------------------------------------- |
+| 01 - Linux      | ✅ Done                               |
+| 02 - Bash       | ✅ Done                               |
+| 03 - Git        | ✅ Done                               |
+| 04 - Networking | ✅ Done                               |
+| 05 - Docker     | ✅ Done                               |
+| 06 - AWS        | ✅ Done                               |
+| 07 - Terraform  | 🚧 Project 2 (cloud-init) in progress |
+| 08 - CI/CD      | ⏳ Up next                            |
+| 09 - Kubernetes | ⏳ Up next                            |
 
-- [Git documentation](https://git-scm.com/doc)
-- [Docker documentation](https://docs.docker.com/)
-- [AWS documentation](https://docs.aws.amazon.com/)
-- [Terraform documentation](https://developer.hashicorp.com/terraform/docs)
+## My Setup
+
+Windows 11 with PowerShell and Git Bash · Docker Desktop · AWS (`eu-north-1`) · Terraform with an S3 backend · draw.io for diagrams
