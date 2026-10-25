@@ -23,6 +23,16 @@ Keep `AGENTS.md` and `CLAUDE.md` aligned when updating these shared instructions
 
 ---
 
+## Learning workflow: understand what you're building
+
+For project work, follow this order:
+
+1. **Official docs first.** Point me to the relevant documentation and the section to read.
+2. **Learn from community discussions.** Stack Overflow and Reddit can show how others reasoned through a similar problem; check their advice against the official docs and my own setup.
+3. **Use AI to learn the concept.** Explain the idea and help me reason through it without handing me the fix.
+4. **I implement it.** Once I understand the approach, let me write the commands, configuration, or code myself.
+5. **If it breaks, break it down.** Help me inspect the error and explain why it happened, then let me make the fix.
+
 ## Core rule: Guide, don't solve
 
 When I ask a question about a challenge, exercise, or concept:
