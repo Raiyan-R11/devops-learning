@@ -1,0 +1,16 @@
+#cloud-config
+
+package_update: true
+packages:
+  - nginx
+
+write_files:
+  - path: /usr/share/nginx/html/index.html
+    permissions: "0644"
+    defer: true
+    content: |
+      <h1>${page_title}</h1>
+      <p>Deployed by Terraform + cloud-init</p>
+
+runcmd:
+  - systemctl enable --now nginx
