@@ -1,0 +1,50 @@
+name: "8.1 Terraform CI/CD pipeline"
+
+on:
+  push:
+    paths:
+      - "8-cicd/Project1/**"
+      - ".github/workflows/cicd-p1.yaml"
+
+defaults:
+  run:
+    working-directory: ./8-cicd/Project1
+
+jobs:
+  build:
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Initialize Terraform project
+        run: terraform init
+
+      - name: Format Terraform
+        id: tf-fmt
+        continue-on-error: true
+        run: terraform fmt -check -diff
+
+      - name: Notify Terraform format failure
+        if: steps.tf-fmt.outcome == 'failure'
+        run: echo "Terraform format failed"
+
+      - name: Validate Terraform
+        id: tf-val
+        continue-on-error: true
+        run: terraform validate
+
+      - name: Notify Terraform validate failure
+        if: steps.tf-val.outcome == 'failure'
+        run: echo "Terraform validate failed"
+
+      - name: Fail if any check failed
+        if: steps.tf-fmt.outcome == 'failure' || steps.tf-val.outcome == 'failure'
+        run: exit 1
+
+      - name: Notify success
+        if: success()
+        run: echo "Terraform formatted and validated successfully"
