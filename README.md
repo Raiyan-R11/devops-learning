@@ -29,6 +29,7 @@
 ### Development
 
 ![Git](https://img.shields.io/badge/Version_Control-Git-F05032?logo=git&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/CI%2FCD-GitHub_Actions-2088FF?logo=githubactions&logoColor=white)
 ![VS Code](https://img.shields.io/badge/Editor-VS_Code-007ACC?logo=visualstudiocode&logoColor=white)
 ![draw.io](https://img.shields.io/badge/Diagrams-draw.io-F08705?logo=diagramsdotnet&logoColor=white)
 ![Markdown](https://img.shields.io/badge/Docs-Markdown-000000?logo=markdown&logoColor=white)
@@ -48,6 +49,7 @@ My working devops notebook - from a Linux terminal to infrastructure that Terraf
 | 05  | **Docker**     | Multi-stage builds and a scaled Flask + Redis + Nginx stack                                         | [View](5-docker/)                      |
 | 06  | **AWS**        | A custom VPC, then an HTTPS ALB with Auto Scaling                                                   | [View](6-AWS/)                         |
 | 07  | **Terraform**  | A reusable EC2 module, S3 remote state, and WordPress as code                                       | [View](7-terraform/)                   |
+| 08  | **CI/CD**      | A GitHub Actions workflow that checks Terraform with `fmt` and `validate`                           | [View](8-cicd/)                        |
 
 ## Highlights
 
@@ -74,7 +76,8 @@ devops-learning/
 ├── 4-networking/   # Nginx, DNS, Cloudflare
 ├── 5-docker/       # Containers and Compose
 ├── 6-AWS/          # VPC and ALB projects
-└── 7-terraform/    # Infrastructure as Code
+├── 7-terraform/    # Infrastructure as Code
+└── 8-cicd/         # GitHub Actions projects
 ```
 
 Each project has its own `documentation.md` with the architecture diagram, resource inventory, test evidence, and troubleshooting notes.
@@ -89,8 +92,8 @@ Each project has its own `documentation.md` with the architecture diagram, resou
 | 04 - Networking | ✅ Done                               |
 | 05 - Docker     | ✅ Done                               |
 | 06 - AWS        | ✅ Done                               |
-| 07 - Terraform  | 🚧 Project 2 (cloud-init) in progress |
-| 08 - CI/CD      | ⏳ Up next                            |
+| 07 - Terraform  | ✅ Done                               |
+| 08 - CI/CD      | 🚧 Project 1 (Terraform) in progress  |
 | 09 - Kubernetes | ⏳ Up next                            |
 
 ## My Setup
