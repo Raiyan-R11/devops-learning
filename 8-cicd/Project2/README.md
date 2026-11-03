@@ -39,4 +39,8 @@ A SHA tag links an image to its source code: `git checkout <sha>` shows exactly 
 
 Run #1 (commit `6225f1b`) succeeded in 1m 1s. Login, build and push all passed.
 
-![Run 1: login, build and push steps all succeed](images/screencapture-github-Raiyan-R11-devops-learning-actions-runs-41578775052-job-125728420728-2026-11-03-08_35_18.png)
+![Run 1: login, build and push steps all succeed](images/actions-run-1.png)
+
+Docker Hub shows the tags for `raiyanr11/cicd-hello-app`. `latest` and `525e69d…` share digest `8c8b464f2672`, so they are the same image. The older `6225f1b…` tag keeps its own digest (`a3b93e0cd7e6`), which is what makes rolling back possible.
+
+![Docker Hub: latest and the 525e69d SHA tag share one digest; 6225f1b keeps its own](images/dockerhub-tags.png)
