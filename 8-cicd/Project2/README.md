@@ -1,22 +1,42 @@
 # Project 2: Build and push a Docker image with GitHub Actions
 
-## Read first
+A GitHub Actions workflow builds a Docker image of a small Flask app and pushes it to Docker Hub on every push that changes it. The assignment brief is in [documentation.md](documentation.md).
 
-- [GitHub Actions: Publishing Docker images](https://docs.github.com/en/actions/tutorials/publish-packages/publish-docker-images): Read the Docker Hub example and identify the build and push steps.
-- [Docker: Personal access tokens](https://docs.docker.com/security/access-tokens/personal-access-tokens/): Read how to create a token with the access needed to push an image.
-- [GitHub Actions: Using secrets](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets): Read how a workflow accesses a repository secret.
+## What's here
 
-## Challenge
+- [app.py](app.py): a Flask app on port 5002 that returns the MySQL server version. It expects a MySQL container reachable as `mydb`.
+- [Dockerfile](Dockerfile): builds the app image from `python:3.8-slim`.
+- [cicd-p2.yaml](../../.github/workflows/cicd-p2.yaml): the workflow. It runs on pushes that change `8-cicd/Project2/**` or the workflow file itself.
 
-Create a basic application, such as `hello-app`, and a Dockerfile for it. Create a GitHub Actions workflow that builds its image and pushes that image to a container registry. Docker Hub is the recommended choice from the lesson; ECR is also allowed.
+The workflow stops once the image is in the registry. It does not deploy or run the container.
 
-If you use Docker Hub, create a Docker Hub account and repository, then store a personal access token in GitHub Actions secrets. The workflow should use that secret to authenticate. Do not put the token in the repository or workflow file.
+## How the workflow runs
 
-The build and push must happen through GitHub Actions, not through a manual push from your computer. This challenge ends with an image in the registry; deploying or running it in an environment is a separate task.
+1. Check out the code.
+2. Log in to Docker Hub with `docker/login-action`.
+3. Build the image once with two tags: the commit SHA and `latest`.
+4. Push both tags with `docker push -a`.
 
-## Done when
+## Authentication
 
-- The repository contains the app, Dockerfile, and image publishing workflow.
-- A GitHub Actions run successfully builds and pushes the image.
-- You can find the image and its tag in the chosen registry.
-- You can explain how the workflow authenticates without exposing the token.
+| Value | Stored as | Why |
+| --- | --- | --- |
+| `DOCKERHUB_USERNAME` | Repository variable (`vars.`) | Not sensitive, so it can appear in logs |
+| `DOCKERHUB_TOKEN` | Repository secret (`secrets.`) | A Docker Hub personal access token, encrypted by GitHub and masked as `***` in logs |
+
+Neither value is in the repository. Both are set under **Settings → Secrets and variables → Actions**. The login action removes the credentials from the runner in its post-job cleanup step.
+
+## Image tags
+
+| Tag | Points to | Changes on each push? |
+| --- | --- | --- |
+| `<commit SHA>` | The image built from that exact commit | No. Each push adds a new SHA tag and old ones stay. |
+| `latest` | The most recent build | Yes. It moves to the newest image. |
+
+A SHA tag links an image to its source code: `git checkout <sha>` shows exactly what was built. Old SHA tags stay in the registry, so rolling back means pulling an earlier tag.
+
+## Results
+
+Run #1 (commit `6225f1b`) succeeded in 1m 1s. Login, build and push all passed.
+
+![Run 1: login, build and push steps all succeed](images/screencapture-github-Raiyan-R11-devops-learning-actions-runs-41578775052-job-125728420728-2026-11-03-08_35_18.png)
