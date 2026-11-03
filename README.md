@@ -25,6 +25,7 @@
 ![Terraform](https://img.shields.io/badge/IaC-Terraform-844FBA?logo=terraform&logoColor=white)
 ![Docker](https://img.shields.io/badge/Container-Docker-2496ED?logo=docker&logoColor=white)
 ![Docker Compose](https://img.shields.io/badge/Orchestration-Docker_Compose-2496ED?logo=docker&logoColor=white)
+![Docker Hub](https://img.shields.io/badge/Registry-Docker_Hub-2496ED?logo=docker&logoColor=white)
 
 ### Development
 
@@ -49,13 +50,14 @@ My working devops notebook - from a Linux terminal to infrastructure that Terraf
 | 05  | **Docker**     | Multi-stage builds and a scaled Flask + Redis + Nginx stack                                         | [View](5-docker/)                      |
 | 06  | **AWS**        | A custom VPC, then an HTTPS ALB with Auto Scaling                                                   | [View](6-AWS/)                         |
 | 07  | **Terraform**  | A reusable EC2 module, S3 remote state, and WordPress as code                                       | [View](7-terraform/)                   |
-| 08  | **CI/CD**      | A GitHub Actions workflow that checks Terraform with `fmt` and `validate`                           | [View](8-cicd/)                        |
+| 08  | **CI/CD**      | GitHub Actions: Terraform `fmt`/`validate` checks, and a Docker image pushed to Docker Hub           | [View](8-cicd/)                        |
 
 ## Highlights
 
 - **HTTPS load balancer with Auto Scaling** _(06 - AWS)_ - an ALB across two AZs with an ACM certificate, a Route 53 alias, and an ASG. The instances only accept traffic from the ALB. [Write-up](6-AWS/Project2/documentation.md)
 - **Custom VPC from scratch** _(06 - AWS)_ - public and private subnets, IGW and NAT routing, and a bastion for private SSH. Includes a Zonal vs Regional NAT comparison. [Write-up](6-AWS/Project1/documentation.md)
 - **WordPress with Terraform** _(07)_ - EC2, security groups, and a user data script that installs Apache, PHP, MariaDB, and WordPress on first boot. Nothing configured by hand on the server. [Write-up](7-terraform/Project1/docs/documentation.md)
+- **Docker image built and pushed by CI** _(08 - CI/CD)_ - a GitHub Actions workflow builds a Flask image and pushes it to Docker Hub, tagged with the commit SHA and `latest`. Docker Hub credentials live in GitHub secrets. [Write-up](8-cicd/Project2/README.md)
 - **Flask + Redis + Nginx** _(05 - Docker)_ - a visit counter behind an Nginx reverse proxy, scaled with Compose. [Challenge](5-docker/challenge/README.md)
 
 ## Things that broke (and what they taught me)
@@ -93,7 +95,7 @@ Each project has its own `documentation.md` with the architecture diagram, resou
 | 05 - Docker     | ✅ Done                               |
 | 06 - AWS        | ✅ Done                               |
 | 07 - Terraform  | ✅ Done                               |
-| 08 - CI/CD      | 🚧 Project 1 (Terraform) in progress  |
+| 08 - CI/CD      | ✅ Done                               |
 | 09 - Kubernetes | ⏳ Up next                            |
 
 ## My Setup
