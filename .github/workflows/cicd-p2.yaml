@@ -1,0 +1,30 @@
+name: "8.2 Docker Image CI/CD pipeline"
+
+on:
+  push:
+    paths:
+      - "8-cicd/Project2/**"
+      - ".github/workflows/cicd-p2.yaml"
+
+defaults:
+  run:
+    working-directory: "./8-cicd/Project2"
+
+jobs:
+  build:
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v4
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: "Build docker image"
+        run: "docker build -t ${{vars.DOCKERHUB_USERNAME}}/cicd-hello-app:${{github.sha}} -t ${{vars.DOCKERHUB_USERNAME}}/cicd-hello-app:latest ."
+
+      - name: "Push images to dockerhub (SHA + latest)"
+        run: "docker push -a ${{vars.DOCKERHUB_USERNAME}}/cicd-hello-app"
